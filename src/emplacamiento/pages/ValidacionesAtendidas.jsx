@@ -21,7 +21,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router";
-import HotelesForm from "./HotelesForm";
 
 const sampleData = [
   {
@@ -170,17 +169,13 @@ const sampleData = [
   },
 ];
 
-export const SolicitudPlacas = () => {
+export const ValidacionesAtendidas = () => {
   const [jsonInput, setJsonInput] = useState("");
   const [tableData, setTableData] = useState(sampleData);
   const [error, setError] = useState("");
   const [useCustomColumns, setUseCustomColumns] = useState(true);
-
-  const [showModal, setShowModal] = useState(false);
-
   const navigate = useNavigate();
 
-  // Columnas personalizadas para la tabla
   const customColumns = [
     // { key: "id", label: "ID", type: "number", sortable: true },
     { key: "noOficio", label: "No. de Oficio", type: "string", sortable: true },
@@ -211,7 +206,7 @@ export const SolicitudPlacas = () => {
       // La función format recibe la fila completa para poder acceder a otros datos si es necesario.
       format: (row) => (
         <Button
-          className="bg-sefi-quat text-sefbase w-full"
+          className="bg-sefi-quat text-sefbase w-1/2"
           variant="outline"
           size="sm"
           // onClick={() => console.log(row)}
@@ -220,12 +215,12 @@ export const SolicitudPlacas = () => {
             navigate("/emplacamiento/padronVehicular", { state: row })
           }
         >
-          Validar{" "}
+          Resolutivo
         </Button>
       ),
     },
   ];
-  // Cargar datos JSON personalizados
+
   const handleLoadJson = () => {
     try {
       const parsedData = JSON.parse(jsonInput);
@@ -253,7 +248,7 @@ export const SolicitudPlacas = () => {
       <div className="m-8 ">
         <div className="p-8 text-5xl">
           <h2 className="font-cascadiaMono-Regular text-sefi-letter">
-            Solicitudes de validación
+            Validaciones atendidas
           </h2>
         </div>
         <Separator className="my-2 border-t-2 border-sefi-quint" />
@@ -262,27 +257,13 @@ export const SolicitudPlacas = () => {
             <CardContent>
               <Tabs defaultValue="table">
                 <TabsContent value="table" className="space-y-4">
-                  <div className="flex flex-row items-center space-x-2 mb-4 justify-evenly">
+                  <div className="flex flex-row items-center space-x-2 mb-4 justify-start">
                     <Button
                       className="bg-sefi-quat text-2xl hover:bg-white hover:text-sefi-quat hover:border-2 hover:cursor-pointer hover:border-sefi-letter"
                       variant={useCustomColumns ? "default" : "outline"}
                       onClick={() => setUseCustomColumns(true)}
                     >
                       Consultar solicitudes atendidas{" "}
-                    </Button>
-                    <Button
-                      className="bg-sefi-quat text-2xl hover:bg-white hover:text-sefi-quat hover:border-2 hover:cursor-pointer hover:border-sefi-letter"
-                      variant={useCustomColumns ? "default" : "outline"}
-                      onClick={() => setShowModal(true)}
-                    >
-                      Generar una validación{" "}
-                    </Button>
-                    <Button
-                      className="bg-sefi-quat text-2xl hover:bg-white hover:text-sefi-quat hover:border-2 hover:cursor-pointer hover:border-sefi-letter"
-                      variant={useCustomColumns ? "default" : "outline"}
-                      onClick={() => setUseCustomColumns(true)}
-                    >
-                      Reporte de validaciones{" "}
                     </Button>
                   </div>
 
@@ -293,28 +274,6 @@ export const SolicitudPlacas = () => {
                     filterable={true}
                     groupable={true}
                   />
-
-                  {showModal && (
-                    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-                      <div className="relative bg-white rounded-lg shadow-lg w-full max-w-2xl max-h-[90vh] overflow-auto">
-                        {/* Botón de cerrar */}
-                        <button
-                          onClick={() => setShowModal(false)}
-                          className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"
-                        >
-                          ✕
-                        </button>
-
-                        {/* Tu formulario dentro del modal */}
-                        <div className="p-6">
-                          <HotelesForm
-                            onSuccess={() => setShowModal(false)} // opcional: callback al enviar
-                            onCancel={() => setShowModal(false)} // opcional: callback al cancelar
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )}
                 </TabsContent>
 
                 <TabsContent value="data" className="space-y-4">

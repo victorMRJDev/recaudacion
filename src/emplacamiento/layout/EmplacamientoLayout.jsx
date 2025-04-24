@@ -5,9 +5,11 @@ import { Outlet } from "react-router";
 const EmplacamientoLayout = () => {
   return (
     <>
-    <NavBar />
-      <div>
-        <Outlet />
+      <div className="flex min-h-screen overflow-hidden">
+        <NavBar />
+        <main className="flex-1 overflow-auto bg-gray-50 p-6 box-border">
+          <Outlet />
+        </main>
       </div>
     </>
   );

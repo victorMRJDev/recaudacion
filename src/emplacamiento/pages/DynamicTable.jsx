@@ -838,9 +838,8 @@ export default function DynamicTable({
                     return (
                       <TableCell key={`${rowIndex}-${column.key}`}>
                         {column.format
-                        //   ? column.format(row[column.key])
-                        ? column.format(row)
-
+                          ? //   ? column.format(row[column.key])
+                            column.format(row)
                           : renderCellValue(row, column.key, type)}
                       </TableCell>
                     );

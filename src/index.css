@@ -3,10 +3,21 @@
 
 @custom-variant dark (&:is(.dark *));
 
-body {
+/* body {
   padding: 20px;
+} */
+@layer base {
+  html, body, #root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;    
+  }
+  *, *::before, *::after {
+    box-sizing: inherit; 
+  }
 }
-
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);

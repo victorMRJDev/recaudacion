@@ -9,6 +9,7 @@ import { SolicitudPlacas } from "./emplacamiento/pages/SolicitudPlacas";
 import { Home } from "./emplacamiento/pages/Home";
 import { AddPadron } from "./emplacamiento/pages/AddPadron";
 import { PadronVehicular } from "./emplacamiento/pages/PadronVehicular";
+import { ValidacionesAtendidas } from "./emplacamiento/pages/ValidacionesAtendidas";
 
 export const AppRouter = () => {
   return (
@@ -37,13 +38,14 @@ export const AppRouter = () => {
             path="/emplacamiento/solicitudes"
             element={<SolicitudPlacas />}
           />
-           <Route
-            path="/emplacamiento/add-solicitud"
-            element={<AddPadron />}
-          />
+          <Route path="/emplacamiento/add-solicitud" element={<AddPadron />} />
           <Route
             path="/emplacamiento/padronVehicular"
             element={<PadronVehicular />}
+          />
+          <Route
+            path="/emplacamiento/validatendidas"
+            element={<ValidacionesAtendidas />}
           />
         </Route>
 
